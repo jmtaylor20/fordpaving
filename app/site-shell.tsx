@@ -1,14 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
-import { email, navItems, phoneDisplay, phoneHref, services } from "./site-data";
+import {
+  email,
+  navItems,
+  phoneDisplay,
+  phoneHref,
+  serviceArea,
+  services,
+} from "./site-data";
 
 export function SiteHeader() {
   return (
     <>
       <div className="topbar">
         <div className="container topbar-inner">
-          <p>Professional asphalt paving & pavement maintenance</p>
+          <p>Serving {serviceArea}</p>
           <div>
             <a href={`mailto:${email}`}>{email}</a>
             <a href={phoneHref}>{phoneDisplay}</a>
@@ -19,10 +26,10 @@ export function SiteHeader() {
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="Ford Paving and Sealing home">
             <Image
-              src="/assets/logo-main.jpg"
+              src="/assets/logo-header.png"
               alt="Ford Paving and Sealing"
-              width={640}
-              height={344}
+              width={900}
+              height={268}
               priority
             />
           </Link>
@@ -66,7 +73,7 @@ export function SiteFooter() {
           <Image src="/assets/logo-phone.png" alt="Ford Paving and Sealing" width={851} height={613} />
           <p>
             Professional asphalt paving, sealcoating, striping, thermoplastic markings, and
-            pavement repair.
+            pavement repair throughout {serviceArea}.
           </p>
         </div>
         <div>
@@ -159,4 +166,3 @@ export function EstimateBand() {
     </section>
   );
 }
-

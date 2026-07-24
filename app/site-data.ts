@@ -13,6 +13,7 @@ export type Service = {
 export const phoneDisplay = "334.703.1949";
 export const phoneHref = "tel:+13347031949";
 export const email = "shane@fordpaving.com";
+export const serviceArea = "Opelika & Beauregard, Alabama";
 
 export const services: Service[] = [
   {
@@ -77,8 +78,8 @@ export const services: Service[] = [
       "Strong, smooth residential driveways designed for everyday use and finished for standout curb appeal.",
     intro:
       "Your driveway works hard every day. We focus on the details that make it last: a stable base, positive drainage, proper compaction, and a clean connection to the road and surrounding landscape.",
-    image: "/assets/asphalt-angle.jpg",
-    alt: "Fresh black asphalt driveway leading toward a home",
+    image: "/assets/service-driveway.jpg",
+    alt: "Fresh asphalt driveway leading to a home in east-central Alabama",
     points: [
       "New driveway installation",
       "Driveway replacement",
@@ -95,8 +96,8 @@ export const services: Service[] = [
       "Complete parking lot paving and maintenance for a clean appearance, organized traffic, and dependable performance.",
     intro:
       "A parking lot is often the first part of your property customers experience. We coordinate paving, repairs, sealing, and markings to create a finished surface that looks professional and works logically.",
-    image: "/assets/asphalt-aerial.jpg",
-    alt: "Aerial view of a smooth newly paved parking area",
+    image: "/assets/service-parking-lot.jpg",
+    alt: "Freshly paved and striped commercial parking lot",
     points: [
       "New lot construction and paving",
       "Resurfacing and rehabilitation",
@@ -113,8 +114,8 @@ export const services: Service[] = [
       "Targeted asphalt repairs that remove failed pavement, restore the surface, and help prevent larger problems.",
     intro:
       "Potholes, broken edges, and failed areas rarely improve on their own. A properly prepared patch restores usability and gives surrounding pavement a better chance to keep performing.",
-    image: "/assets/asphalt-detail.jpg",
-    alt: "Close view of dense professional asphalt pavement",
+    image: "/assets/service-patching.jpg",
+    alt: "Asphalt repair crew installing a full-depth parking lot patch",
     points: [
       "Pothole and failed-area repair",
       "Full-depth patching",
@@ -132,4 +133,3 @@ export const navItems = [
   { href: "/gallery", label: "Photo Gallery" },
   { href: "/contact", label: "Contact" },
 ];
-

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { EstimateForm } from "../estimate-form";
 import { ThankYouGate } from "../thank-you-gate";
 import { EstimateBand, PageHero, PageShell } from "../site-shell";
-import { email, phoneDisplay, phoneHref, services } from "../site-data";
+import { email, phoneDisplay, phoneHref, serviceArea, services } from "../site-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,7 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: service ? `${service.title} | Ford Paving & Sealing` : titles[slug],
-    description: service ? service.summary : descriptions[slug],
+    description: service
+      ? `${service.summary} Serving ${serviceArea}.`
+      : descriptions[slug],
   };
 }
 
@@ -49,7 +51,7 @@ export default async function SlugPage({ params }: Props) {
         <PageHero
           eyebrow={service.eyebrow}
           title={service.title}
-          copy={service.summary}
+          copy={`${service.summary} Proudly serving ${serviceArea}.`}
           image={service.image}
         />
         <section className="section service-detail">
@@ -126,7 +128,7 @@ export default async function SlugPage({ params }: Props) {
             <div className="story-copy">
               <p className="lead">
                 Ford Paving & Sealing is built around practical recommendations, disciplined
-                preparation, and a sharp final finish.
+                preparation, and a sharp final finish for properties throughout {serviceArea}.
               </p>
               <p>
                 Pavement is a system. Base conditions, water movement, traffic, edges, repairs,
@@ -194,10 +196,12 @@ export default async function SlugPage({ params }: Props) {
   if (slug === "gallery") {
     const gallery = [
       ["/assets/service-asphalt.jpg", "Fresh commercial asphalt paving in progress"],
+      ["/assets/service-patching.jpg", "Full-depth asphalt patching and repair"],
       ["/assets/service-sealcoating.jpg", "Commercial sealcoat application"],
       ["/assets/service-striping.jpg", "Parking lot line striping in progress"],
+      ["/assets/service-parking-lot.jpg", "Finished commercial parking lot and markings"],
+      ["/assets/service-driveway.jpg", "New residential asphalt driveway"],
       ["/assets/asphalt-aerial.jpg", "Aerial view of a finished asphalt surface"],
-      ["/assets/asphalt-angle.jpg", "Clean asphalt surface from a low angle"],
       ["/assets/asphalt-detail.jpg", "Detailed view of dense asphalt aggregate"],
     ];
     return (
@@ -242,7 +246,7 @@ export default async function SlugPage({ params }: Props) {
               <h2>A straightforward start.</h2>
               <p>
                 Send the basics and we’ll follow up to learn more about the surface, property, and
-                timing.
+                timing in {serviceArea}.
               </p>
               <div className="contact-list">
                 <a href={phoneHref}>
@@ -253,6 +257,10 @@ export default async function SlugPage({ params }: Props) {
                   <span>Email</span>
                   <strong>{email}</strong>
                 </a>
+                <div>
+                  <span>Service area</span>
+                  <strong>{serviceArea}</strong>
+                </div>
                 <div>
                   <span>Estimate</span>
                   <strong>Free and pressure-free</strong>
@@ -281,4 +289,3 @@ export default async function SlugPage({ params }: Props) {
 
   notFound();
 }
-

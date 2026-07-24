@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { EstimateForm } from "./estimate-form";
 import { EstimateBand, PageShell } from "./site-shell";
-import { phoneDisplay, phoneHref, services } from "./site-data";
+import { phoneDisplay, phoneHref, serviceArea, services } from "./site-data";
 
 export default function Home() {
   return (
@@ -29,7 +29,7 @@ export default function Home() {
             </h1>
             <p>
               Professional asphalt paving and pavement maintenance for driveways, parking lots,
-              and commercial properties.
+              and commercial properties in {serviceArea}.
             </p>
             <div className="button-row">
               <Link className="button button--white" href="/contact">
@@ -174,4 +174,3 @@ export default function Home() {
     </PageShell>
   );
 }
-
