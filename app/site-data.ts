@@ -13,7 +13,7 @@ export type Service = {
 export const phoneDisplay = "334.703.1949";
 export const phoneHref = "tel:+13347031949";
 export const email = "shane@fordpaving.com";
-export const serviceArea = "Opelika & Beauregard, Alabama";
+export const serviceArea = "Central Alabama";
 
 export const services: Service[] = [
   {
