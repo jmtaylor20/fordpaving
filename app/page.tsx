@@ -40,10 +40,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="hero-proof">
-            <span>01</span>
-            <p>One crew. Complete pavement care.</p>
-          </div>
         </div>
       </section>
 
