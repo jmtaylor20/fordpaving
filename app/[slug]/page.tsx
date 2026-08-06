@@ -9,7 +9,14 @@ import { email, phoneDisplay, phoneHref, serviceArea, services } from "../site-d
 
 type Props = { params: Promise<{ slug: string }> };
 
-const standardPages = ["about", "contact", "gallery", "services", "thank-you"];
+const standardPages = [
+  "about",
+  "contact",
+  "gallery",
+  "privacy-policy",
+  "services",
+  "thank-you",
+];
 
 export function generateStaticParams() {
   return [...standardPages, ...services.map((service) => service.slug)].map((slug) => ({ slug }));
@@ -22,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     about: "About Ford Paving & Sealing",
     contact: "Request a Free Estimate",
     gallery: "Paving & Pavement Photo Gallery",
+    "privacy-policy": "Privacy Policy",
     services: "Asphalt Paving & Maintenance Services",
     "thank-you": "Thank You",
   };
@@ -29,6 +37,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     about: "Learn about Ford Paving & Sealing’s practical, detail-driven approach to pavement work.",
     contact: "Request a free asphalt paving, sealcoating, striping, driveway, patching, or parking lot estimate.",
     gallery: "Explore asphalt, sealcoating, striping, driveway, and parking lot work from Ford Paving & Sealing.",
+    "privacy-policy":
+      "Read how Ford Paving & Sealing collects, uses, protects, and shares information submitted through this website.",
     services: "Explore asphalt paving, sealcoating, striping, thermoplastic, driveway, parking lot, and patching services.",
     "thank-you": "Your estimate request has been received by Ford Paving & Sealing.",
   };
@@ -269,6 +279,100 @@ export default async function SlugPage({ params }: Props) {
             </div>
             <EstimateForm title="Request your free estimate" />
           </div>
+        </section>
+      </PageShell>
+    );
+  }
+
+  if (slug === "privacy-policy") {
+    return (
+      <PageShell>
+        <PageHero
+          eyebrow="Your information"
+          title="Privacy Policy"
+          copy="How Ford Paving & Sealing handles information submitted through this website and our estimate request form."
+          image="/assets/asphalt-pattern.jpg"
+        />
+        <section className="section policy-section">
+          <article className="container policy-content">
+            <p className="policy-updated">Effective date: August 6, 2026</p>
+
+            <h2>Our commitment</h2>
+            <p>
+              Ford Paving & Sealing respects your privacy. This policy explains what information
+              we collect through fordpaving.com, why we collect it, how we use it, and the choices
+              available to you.
+            </p>
+
+            <h2>Information we collect</h2>
+            <p>
+              When you request an estimate, we may collect your name, phone number, email address,
+              requested service, and the project details you choose to provide. Our website and
+              hosting providers may also process limited technical information, such as an IP
+              address, browser type, device information, and security or access logs.
+            </p>
+
+            <h2>How we use information</h2>
+            <p>We may use the information we collect to:</p>
+            <ul>
+              <li>Respond to estimate requests and questions.</li>
+              <li>Contact you about your property, project needs, scheduling, or services.</li>
+              <li>Operate, maintain, secure, and improve this website.</li>
+              <li>Prevent spam, fraud, misuse, or other security issues.</li>
+              <li>Comply with legal obligations and protect our rights.</li>
+            </ul>
+
+            <h2>How we share information</h2>
+            <p>
+              We do not sell or rent your personal information. We may share information with
+              service providers that help us host the website, process forms, deliver email
+              notifications, or operate the business. We may also disclose information when
+              required by law, to protect rights or safety, or as part of a business transfer.
+            </p>
+
+            <h2>Forms, spam protection, and browser storage</h2>
+            <p>
+              Estimate requests are processed through Netlify Forms, which uses automated spam
+              filtering and related security measures. After a successful submission, this site
+              stores a temporary indicator in your browser session so it can display the Thank You
+              page. That indicator does not contain the information entered in the form and is
+              cleared when the browser session ends.
+            </p>
+
+            <h2>Data retention and security</h2>
+            <p>
+              We retain information for as long as reasonably necessary to respond to your request,
+              provide services, maintain business records, resolve disputes, and meet legal
+              obligations. We use reasonable administrative and technical safeguards, but no method
+              of electronic transmission or storage can be guaranteed completely secure.
+            </p>
+
+            <h2>Your choices</h2>
+            <p>
+              You may ask to review, correct, or delete personal information you submitted through
+              this website, subject to applicable legal and recordkeeping requirements. You can also
+              choose not to use the online form and contact us by phone instead.
+            </p>
+
+            <h2>Children’s privacy</h2>
+            <p>
+              This website is intended for property owners and others seeking paving services. It is
+              not directed to children under 13, and we do not knowingly collect personal information
+              from children under 13.
+            </p>
+
+            <h2>Policy updates</h2>
+            <p>
+              We may update this policy as our website or practices change. The effective date at the
+              top of this page identifies the latest version.
+            </p>
+
+            <h2>Contact us</h2>
+            <p>
+              Questions or privacy requests may be sent to <a href={`mailto:${email}`}>{email}</a> or
+              made by phone at <a href={phoneHref}>{phoneDisplay}</a>.
+            </p>
+          </article>
         </section>
       </PageShell>
     );

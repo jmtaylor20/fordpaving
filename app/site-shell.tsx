@@ -109,7 +109,10 @@ export function SiteFooter() {
       </div>
       <div className="container footer-bottom">
         <p>© {new Date().getFullYear()} Ford Paving & Sealing. All rights reserved.</p>
-        <p>Asphalt done right. From first grade to final stripe.</p>
+        <div>
+          <Link href="/privacy-policy/">Privacy Policy</Link>
+          <p>Asphalt done right. From first grade to final stripe.</p>
+        </div>
       </div>
     </footer>
   );

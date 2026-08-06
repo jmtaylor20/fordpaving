@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.URL ?? "https://fordpaving.netlify.app"),
+  metadataBase: new URL(process.env.URL ?? "https://fordpaving.com"),
   title: {
     default: "Ford Paving & Sealing | Asphalt, Sealcoating & Striping",
     template: "%s | Ford Paving & Sealing",

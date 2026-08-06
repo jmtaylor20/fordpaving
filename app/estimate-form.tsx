@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 type Props = {
@@ -22,13 +23,18 @@ export function EstimateForm({
     setStatus("sending");
 
     try {
-      await fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
+
+      if (!response.ok) {
+        throw new Error("Estimate request could not be submitted.");
+      }
+
       window.sessionStorage.setItem("ford-estimate-submitted", "true");
-      window.location.assign("/thank-you");
+      window.location.assign("/thank-you/");
     } catch {
       setStatus("error");
     }
@@ -40,7 +46,7 @@ export function EstimateForm({
       className={`estimate-form${dark ? " estimate-form--dark" : ""}`}
       name="free-estimate"
       method="POST"
-      action="/thank-you"
+      action="/thank-you/"
       data-netlify="true"
       netlify-honeypot="company-website"
       onSubmit={submitForm}
@@ -109,7 +115,9 @@ export function EstimateForm({
           ? "Something interrupted the form. Please call 334.703.1949."
           : "No pressure. Just a straightforward conversation about your project."}
       </p>
+      <p className="form-privacy">
+        By submitting this form, you acknowledge our <Link href="/privacy-policy/">Privacy Policy</Link>.
+      </p>
     </form>
   );
 }
-
