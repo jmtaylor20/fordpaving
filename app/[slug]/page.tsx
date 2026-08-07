@@ -36,7 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const descriptions: Record<string, string> = {
     about: "Learn about Ford Paving & Sealing’s practical, detail-driven approach to pavement work.",
     contact: "Request a free asphalt paving, sealcoating, striping, driveway, patching, or parking lot estimate.",
-    gallery: "Explore asphalt, sealcoating, striping, driveway, and parking lot work from Ford Paving & Sealing.",
+    gallery:
+      "View real Ford Paving & Sealing asphalt, sealcoating, striping, driveway, trail, and parking lot projects.",
     "privacy-policy":
       "Read how Ford Paving & Sealing collects, uses, protects, and shares information submitted through this website.",
     services: "Explore asphalt paving, sealcoating, striping, thermoplastic, driveway, parking lot, and patching services.",
@@ -205,31 +206,85 @@ export default async function SlugPage({ params }: Props) {
 
   if (slug === "gallery") {
     const gallery = [
-      ["/assets/service-asphalt.jpg", "Fresh commercial asphalt paving in progress"],
-      ["/assets/service-patching.jpg", "Full-depth asphalt patching and repair"],
-      ["/assets/service-sealcoating.jpg", "Commercial sealcoat application"],
-      ["/assets/service-striping.jpg", "Parking lot line striping in progress"],
-      ["/assets/service-parking-lot.jpg", "Finished commercial parking lot and markings"],
-      ["/assets/service-driveway.jpg", "New residential asphalt driveway"],
-      ["/assets/asphalt-aerial.jpg", "Aerial view of a finished asphalt surface"],
-      ["/assets/asphalt-detail.jpg", "Detailed view of dense asphalt aggregate"],
+      {
+        src: "/assets/gallery-industrial-paving.jpg",
+        alt: "Fresh commercial asphalt surface beside a storage facility",
+        caption: "Commercial paving at a storage facility",
+        className: "gallery-wide",
+        position: "center 58%",
+      },
+      {
+        src: "/assets/gallery-driveway-roller.jpg",
+        alt: "Roller compacting a newly paved private drive",
+        caption: "Rolling and compacting fresh asphalt",
+        className: "gallery-tall",
+        position: "center",
+      },
+      {
+        src: "/assets/gallery-church-entrance.jpg",
+        alt: "Fresh asphalt entrance and road tie-in beside a church",
+        caption: "New entrance paving and road tie-in",
+        className: "gallery-tall",
+        position: "center 38%",
+      },
+      {
+        src: "/assets/gallery-trail-striping.jpg",
+        alt: "Newly paved wooded trail with a bright yellow centerline",
+        caption: "Trail paving and centerline striping",
+        className: "gallery-tall",
+        position: "center",
+      },
+      {
+        src: "/assets/gallery-storage-striping.jpg",
+        alt: "Fresh yellow striping at a commercial storage facility",
+        caption: "Commercial striping and directional markings",
+        className: "gallery-tall",
+        position: "center 42%",
+      },
+      {
+        src: "/assets/gallery-church-lot.jpg",
+        alt: "Completed church parking lot with fresh white striping",
+        caption: "Completed parking lot paving and striping",
+        className: "gallery-tall",
+        position: "center 48%",
+      },
+      {
+        src: "/assets/gallery-sealcoating-work.jpg",
+        alt: "Ford Paving crew applying sealer on a neighborhood street",
+        caption: "Sealcoating application in progress",
+        className: "gallery-tall",
+        position: "center 30%",
+      },
+      {
+        src: "/assets/gallery-finished-lot.jpg",
+        alt: "Finished sealcoated parking lot with crisp white markings",
+        caption: "Finished sealcoating and parking-lot striping",
+        className: "gallery-tall",
+        position: "center 42%",
+      },
     ];
     return (
       <PageShell>
         <PageHero
           eyebrow="Photo gallery"
-          title="Good pavement speaks in surfaces and lines."
-          copy="A closer look at the texture, precision, and visual transformation behind professional pavement work."
-          image="/assets/asphalt-angle.jpg"
+          title="Real work. Built to be seen."
+          copy="Actual Ford Paving & Sealing projects—from fresh asphalt and sealcoating to commercial striping and finished parking lots."
+          image="/assets/gallery-industrial-paving.jpg"
         />
         <section className="section">
           <div className="container gallery-grid">
-            {gallery.map(([src, alt], index) => (
-              <figure key={src} className={index === 0 || index === 3 ? "gallery-wide" : ""}>
-                <Image src={src} alt={alt} fill sizes="(max-width: 760px) 100vw, 50vw" />
+            {gallery.map((item, index) => (
+              <figure key={item.src} className={item.className}>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 850px) 50vw, 33vw"
+                  style={{ objectPosition: item.position }}
+                />
                 <figcaption>
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  {alt}
+                  {item.caption}
                 </figcaption>
               </figure>
             ))}
