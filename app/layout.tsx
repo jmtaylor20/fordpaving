@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+import { GA_TAG_ID } from "./gtag";
+import { CallConversionTracker } from "./call-conversion-tracker";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.URL ?? "https://fordpaving.com"),
@@ -47,7 +50,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {/* Google tag (gtag.js) — Google Ads conversion tracking */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_TAG_ID}');`}
+        </Script>
+        {children}
+        <CallConversionTracker />
+      </body>
     </html>
   );
 }
