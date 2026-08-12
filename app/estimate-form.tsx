@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { reportFormConversion } from "./gtag";
 
 type Props = {
   dark?: boolean;
@@ -34,7 +35,8 @@ export function EstimateForm({
       }
 
       window.sessionStorage.setItem("ford-estimate-submitted", "true");
-      window.location.assign("/thank-you/");
+      // Report the Google Ads conversion, then continue to the thank-you page.
+      reportFormConversion(() => window.location.assign("/thank-you/"));
     } catch {
       setStatus("error");
     }
