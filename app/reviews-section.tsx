@@ -45,7 +45,7 @@ export function ReviewsSection() {
             </div>
           </div>
         </div>
-        <div className="review-grid">
+        <div className={`review-grid${googleReviews.length === 1 ? " review-grid--single" : ""}`}>
           {googleReviews.map((review) => (
             <blockquote key={review.id} className="review-card">
               <Stars rating={review.rating} />

@@ -1416,6 +1416,16 @@ h3 {
   margin-top: 44px;
 }
 
+.review-grid--single {
+  grid-template-columns: 1fr;
+  max-width: 820px;
+}
+
+.review-grid--single .review-card p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
 .review-card {
   display: flex;
   flex-direction: column;
