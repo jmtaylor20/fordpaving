@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { EstimateForm } from "./estimate-form";
 import { EstimateBand, PageShell } from "./site-shell";
 import { phoneDisplay, phoneHref, serviceArea, services } from "./site-data";
 import { JsonLd, webSiteSchema } from "./structured-data";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
@@ -12,7 +17,7 @@ export default function Home() {
       <section className="home-hero">
         <Image
           className="hero-image"
-          src="/assets/service-asphalt.jpg"
+          src="/assets/hero-asphalt.jpg"
           alt="Ford Paving crew installing a smooth commercial asphalt surface"
           fill
           sizes="100vw"
@@ -107,11 +112,10 @@ export default function Home() {
         <div className="container why-grid">
           <div className="why-image">
             <Image
-              src="/assets/gallery-trail-striping.jpg"
+              src="/assets/work-trail.jpg"
               alt="Freshly paved wooded trail with a bright yellow centerline, a real Ford Paving project"
               fill
               sizes="(max-width: 850px) 100vw, 50vw"
-              style={{ objectPosition: "center 60%" }}
             />
             <div className="why-badge">
               <span>FORD</span>

@@ -13,7 +13,7 @@ import {
 export function SiteHeader() {
   return (
     <>
-      <div className="topbar">
+      <aside className="topbar" aria-label="Contact details">
         <div className="container topbar-inner">
           <p>Serving {serviceArea}</p>
           <div>
@@ -21,7 +21,7 @@ export function SiteHeader() {
             <a href={phoneHref}>{phoneDisplay}</a>
           </div>
         </div>
-      </div>
+      </aside>
       <header className="site-header">
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="Ford Paving and Sealing home">
@@ -78,7 +78,7 @@ export function SiteFooter() {
         </div>
         <div>
           <span className="footer-label">Explore</span>
-          <nav>
+          <nav aria-label="Footer navigation">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
@@ -88,7 +88,7 @@ export function SiteFooter() {
         </div>
         <div>
           <span className="footer-label">Services</span>
-          <nav>
+          <nav aria-label="Footer services">
             {services.slice(0, 6).map((service) => (
               <Link key={service.slug} href={`/${service.slug}`}>
                 {service.title}
