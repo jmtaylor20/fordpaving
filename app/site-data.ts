@@ -23,9 +23,9 @@ export const services: Service[] = [
     summary:
       "Smooth, durable blacktop installed with careful grading, clean edges, and a finish made to perform.",
     intro:
-      "A lasting asphalt surface starts below the mat. We approach each paving project as a complete system—from drainage and base preparation through compaction and the final tie-in.",
-    image: "/assets/service-asphalt.jpg",
-    alt: "Professional crew paving a commercial asphalt parking lot",
+      "A lasting asphalt surface starts below the mat. We approach each paving project as a complete system: from drainage and base preparation through compaction and the final tie-in.",
+    image: "/assets/work-asphalt-paving.jpg",
+    alt: "Fresh asphalt mat rolled out beside a commercial storage building by Ford Paving",
     points: [
       "Site preparation and grading",
       "New asphalt installation",
@@ -42,8 +42,8 @@ export const services: Service[] = [
       "A clean, uniform protective finish that refreshes curb appeal and helps asphalt stand up to the elements.",
     intro:
       "Sealcoating is preventive maintenance with an immediate visual payoff. Proper cleaning, preparation, and even application help shield asphalt from oxidation, moisture, fuel, and daily wear.",
-    image: "/assets/service-sealcoating.jpg",
-    alt: "Worker applying black sealcoat to a commercial parking lot",
+    image: "/assets/work-sealcoating.jpg",
+    alt: "Ford Paving crew member applying sealer on a neighborhood street",
     points: [
       "Surface cleaning and preparation",
       "Crack and problem-area review",
@@ -60,8 +60,8 @@ export const services: Service[] = [
       "Crisp layouts, bright markings, and durable thermoplastic details for safer, sharper-looking pavement.",
     intro:
       "Well-planned pavement markings improve flow, use space efficiently, and make a strong first impression. We handle fresh layouts and restriping with attention to alignment, visibility, and clean geometry.",
-    image: "/assets/service-striping.jpg",
-    alt: "Professional line striping machine marking a newly paved parking lot",
+    image: "/assets/work-striping.jpg",
+    alt: "Fresh yellow parking stalls and directional arrows striped at a storage facility",
     points: [
       "New layouts and restriping",
       "Parking stalls and directional markings",
@@ -78,8 +78,8 @@ export const services: Service[] = [
       "Strong, smooth residential driveways designed for everyday use and finished for standout curb appeal.",
     intro:
       "Your driveway works hard every day. We focus on the details that make it last: a stable base, positive drainage, proper compaction, and a clean connection to the road and surrounding landscape.",
-    image: "/assets/service-driveway.jpg",
-    alt: "Fresh asphalt driveway leading to a home in east-central Alabama",
+    image: "/assets/work-driveways.jpg",
+    alt: "Roller compacting a freshly paved private drive on a Central Alabama property",
     points: [
       "New driveway installation",
       "Driveway replacement",
@@ -96,8 +96,8 @@ export const services: Service[] = [
       "Complete parking lot paving and maintenance for a clean appearance, organized traffic, and dependable performance.",
     intro:
       "A parking lot is often the first part of your property customers experience. We coordinate paving, repairs, sealing, and markings to create a finished surface that looks professional and works logically.",
-    image: "/assets/service-parking-lot.jpg",
-    alt: "Freshly paved and striped commercial parking lot",
+    image: "/assets/work-parking-lots.jpg",
+    alt: "Completed church parking lot with fresh sealer and crisp white striping",
     points: [
       "New lot construction and paving",
       "Resurfacing and rehabilitation",
@@ -114,8 +114,8 @@ export const services: Service[] = [
       "Targeted asphalt repairs that remove failed pavement, restore the surface, and help prevent larger problems.",
     intro:
       "Potholes, broken edges, and failed areas rarely improve on their own. A properly prepared patch restores usability and gives surrounding pavement a better chance to keep performing.",
-    image: "/assets/service-patching.jpg",
-    alt: "Asphalt repair crew installing a full-depth parking lot patch",
+    image: "/assets/work-patching.jpg",
+    alt: "New asphalt entrance patch tied into the road in front of a church",
     points: [
       "Pothole and failed-area repair",
       "Full-depth patching",

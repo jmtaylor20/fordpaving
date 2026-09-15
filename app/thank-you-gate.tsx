@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 
 export function ThankYouGate() {
-  const [allowed, setAllowed] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setAllowed(window.sessionStorage.getItem("ford-estimate-submitted") === "true");
-  }, []);
+  // Server render and hydration return null (loading); the client then reads
+  // the flag the estimate form sets in sessionStorage.
+  const allowed = useSyncExternalStore(
+    () => () => {},
+    () => window.sessionStorage.getItem("ford-estimate-submitted") === "true",
+    () => null,
+  );
 
   if (allowed === null) {
     return <div className="gate-loading" aria-label="Loading" />;

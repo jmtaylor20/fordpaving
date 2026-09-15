@@ -4,9 +4,9 @@
 export const GA_TAG_ID = "AW-18375216584";
 
 export const CONVERSIONS = {
-  // "Estimate Form Submit" — fires when the free-estimate form is submitted.
+  // "Estimate Form Submit": fires when the free-estimate form is submitted.
   form: "AW-18375216584/JXiuCKjE0eAcEMib_rlE",
-  // "Click to call" — fires when a visitor taps a tel: phone link.
+  // "Click to call": fires when a visitor taps a tel: phone link.
   call: "AW-18375216584/r36RCK7E0eAcEMib_rlE",
 } as const;
 
