@@ -1,4 +1,5 @@
 import { email, phoneDisplay, serviceArea, services, type Service } from "./site-data";
+import { googleReviewSummary, googleReviews, hasReviews } from "./reviews";
 
 export const siteUrl = process.env.URL ?? "https://fordpaving.com";
 export const businessName = "Ford Paving & Sealing";
@@ -56,6 +57,29 @@ export function localBusinessSchema() {
       priceCurrency: "USD",
       url: `${siteUrl}/contact/`,
     },
+    ...(hasReviews
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: googleReviewSummary.averageRating,
+            reviewCount: googleReviewSummary.reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+          },
+          review: googleReviews.map((review) => ({
+            "@type": "Review",
+            author: { "@type": "Person", name: review.author },
+            datePublished: review.date,
+            reviewBody: review.text,
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: review.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+          })),
+        }
+      : {}),
   };
 }
 

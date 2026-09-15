@@ -114,6 +114,18 @@ test("service cards use real job photos, not the stock service set", async () =>
   }
 });
 
+test("reviews band and AggregateRating schema appear together or not at all", async () => {
+  const home = await readPage("index.html");
+  const bandShown = home.includes('class="section reviews-section"');
+  const business = jsonLd(home).find((record) => [record["@type"]].flat().includes("LocalBusiness"));
+  assert.equal(Boolean(business.aggregateRating), bandShown);
+  if (bandShown) {
+    assert.ok(business.aggregateRating.reviewCount > 0);
+    assert.ok(Array.isArray(business.review) && business.review.length > 0);
+    assert.ok((home.match(/class="review-card"/g) ?? []).length === business.review.length);
+  }
+});
+
 test("rendered copy contains no em dashes or en dashes", async () => {
   for (const page of pages) {
     const html = await readPage(page);
