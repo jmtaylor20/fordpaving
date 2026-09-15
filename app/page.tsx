@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { EstimateForm } from "./estimate-form";
+import { ReviewsSection } from "./reviews-section";
 import { EstimateBand, PageShell } from "./site-shell";
 import { phoneDisplay, phoneHref, serviceArea, services } from "./site-data";
 import { JsonLd, webSiteSchema } from "./structured-data";
@@ -155,6 +156,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection />
 
       <section className="section home-form-section">
         <div className="container home-form-grid">
