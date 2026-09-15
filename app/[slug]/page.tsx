@@ -6,6 +6,7 @@ import { EstimateForm } from "../estimate-form";
 import { ThankYouGate } from "../thank-you-gate";
 import { EstimateBand, PageHero, PageShell } from "../site-shell";
 import { email, phoneDisplay, phoneHref, serviceArea, services } from "../site-data";
+import { JsonLd, breadcrumbSchema, serviceSchema, webPageSchema } from "../structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,27 +23,29 @@ export function generateStaticParams() {
   return [...standardPages, ...services.map((service) => service.slug)].map((slug) => ({ slug }));
 }
 
+const titles: Record<string, string> = {
+  about: "About Ford Paving & Sealing",
+  contact: "Request a Free Estimate",
+  gallery: "Paving & Pavement Photo Gallery",
+  "privacy-policy": "Privacy Policy",
+  services: "Asphalt Paving & Maintenance Services",
+  "thank-you": "Thank You",
+};
+
+const descriptions: Record<string, string> = {
+  about: "Learn about Ford Paving & Sealing’s practical, detail-driven approach to pavement work.",
+  contact: "Request a free asphalt paving, sealcoating, striping, driveway, patching, or parking lot estimate.",
+  gallery:
+    "View real Ford Paving & Sealing asphalt, sealcoating, striping, driveway, trail, and parking lot projects.",
+  "privacy-policy":
+    "Read how Ford Paving & Sealing collects, uses, protects, and shares information submitted through this website.",
+  services: "Explore asphalt paving, sealcoating, striping, thermoplastic, driveway, parking lot, and patching services.",
+  "thank-you": "Your estimate request has been received by Ford Paving & Sealing.",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
-  const titles: Record<string, string> = {
-    about: "About Ford Paving & Sealing",
-    contact: "Request a Free Estimate",
-    gallery: "Paving & Pavement Photo Gallery",
-    "privacy-policy": "Privacy Policy",
-    services: "Asphalt Paving & Maintenance Services",
-    "thank-you": "Thank You",
-  };
-  const descriptions: Record<string, string> = {
-    about: "Learn about Ford Paving & Sealing’s practical, detail-driven approach to pavement work.",
-    contact: "Request a free asphalt paving, sealcoating, striping, driveway, patching, or parking lot estimate.",
-    gallery:
-      "View real Ford Paving & Sealing asphalt, sealcoating, striping, driveway, trail, and parking lot projects.",
-    "privacy-policy":
-      "Read how Ford Paving & Sealing collects, uses, protects, and shares information submitted through this website.",
-    services: "Explore asphalt paving, sealcoating, striping, thermoplastic, driveway, parking lot, and patching services.",
-    "thank-you": "Your estimate request has been received by Ford Paving & Sealing.",
-  };
 
   return {
     title: service ? `${service.title} | Ford Paving & Sealing` : titles[slug],
@@ -59,6 +62,15 @@ export default async function SlugPage({ params }: Props) {
   if (service) {
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            serviceSchema(service),
+            breadcrumbSchema([
+              { name: "Services", path: "/services/" },
+              { name: service.title, path: `/${service.slug}/` },
+            ]),
+          ]}
+        />
         <PageHero
           eyebrow={service.eyebrow}
           title={service.title}
@@ -124,10 +136,16 @@ export default async function SlugPage({ params }: Props) {
   if (slug === "about") {
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            webPageSchema("AboutPage", titles["about"], "/about/", descriptions["about"]),
+            breadcrumbSchema([{ name: titles["about"], path: "/about/" }]),
+          ]}
+        />
         <PageHero
           eyebrow="About Ford"
           title="Pavement work with a clear point of view."
-          copy="Prepare it right. Build it clean. Finish every detail like it matters—because it does."
+          copy="Prepare it right. Build it clean. Finish every detail like it matters, because it does."
           image="/assets/asphalt-pattern.jpg"
         />
         <section className="section about-story">
@@ -178,6 +196,12 @@ export default async function SlugPage({ params }: Props) {
   if (slug === "services") {
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            webPageSchema("CollectionPage", titles["services"], "/services/", descriptions["services"]),
+            breadcrumbSchema([{ name: titles["services"], path: "/services/" }]),
+          ]}
+        />
         <PageHero
           eyebrow="Pavement services"
           title="One surface. A complete set of solutions."
@@ -265,10 +289,16 @@ export default async function SlugPage({ params }: Props) {
     ];
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            webPageSchema("ImageGallery", titles["gallery"], "/gallery/", descriptions["gallery"]),
+            breadcrumbSchema([{ name: titles["gallery"], path: "/gallery/" }]),
+          ]}
+        />
         <PageHero
           eyebrow="Photo gallery"
           title="Real work. Built to be seen."
-          copy="Actual Ford Paving & Sealing projects—from fresh asphalt and sealcoating to commercial striping and finished parking lots."
+          copy="Actual Ford Paving & Sealing projects, from fresh asphalt and sealcoating to commercial striping and finished parking lots."
           image="/assets/gallery-industrial-paving.jpg"
         />
         <section className="section">
@@ -298,6 +328,12 @@ export default async function SlugPage({ params }: Props) {
   if (slug === "contact") {
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            webPageSchema("ContactPage", titles["contact"], "/contact/", descriptions["contact"]),
+            breadcrumbSchema([{ name: titles["contact"], path: "/contact/" }]),
+          ]}
+        />
         <PageHero
           eyebrow="Start a project"
           title="Tell us where the pavement needs attention."
@@ -342,6 +378,12 @@ export default async function SlugPage({ params }: Props) {
   if (slug === "privacy-policy") {
     return (
       <PageShell>
+        <JsonLd
+          data={[
+            webPageSchema("WebPage", titles["privacy-policy"], "/privacy-policy/", descriptions["privacy-policy"]),
+            breadcrumbSchema([{ name: titles["privacy-policy"], path: "/privacy-policy/" }]),
+          ]}
+        />
         <PageHero
           eyebrow="Your information"
           title="Privacy Policy"

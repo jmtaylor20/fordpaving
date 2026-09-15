@@ -7,7 +7,7 @@ import { reportCallConversion } from "./gtag";
  * Fires a Google Ads click-to-call conversion whenever a visitor taps any
  * `tel:` link on the site. Uses a single delegated listener so every phone
  * link (header, footer, hero, service pages, thank-you page) is covered
- * automatically — no per-link wiring needed.
+ * automatically, so no per-link wiring is needed.
  */
 export function CallConversionTracker() {
   useEffect(() => {

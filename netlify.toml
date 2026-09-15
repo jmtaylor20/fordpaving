@@ -1,4 +1,6 @@
 [build]
+  # build:netlify sets NETLIFY=true so next.config.ts switches to a static
+  # export, which writes the site to the "out" directory published below.
   command = "pnpm run build:netlify"
   publish = "out"
 
@@ -6,6 +8,9 @@
   NODE_VERSION = "22"
   PNPM_VERSION = "11.9.0"
   NETLIFY = "true"
+  # This site is a static export. Skip the Next.js Runtime so Netlify serves
+  # the "out" directory as-is instead of looking for a .next server build.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[headers]]
   for = "/*"

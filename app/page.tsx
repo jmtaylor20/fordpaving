@@ -3,10 +3,12 @@ import Link from "next/link";
 import { EstimateForm } from "./estimate-form";
 import { EstimateBand, PageShell } from "./site-shell";
 import { phoneDisplay, phoneHref, serviceArea, services } from "./site-data";
+import { JsonLd, webSiteSchema } from "./structured-data";
 
 export default function Home() {
   return (
     <PageShell>
+      <JsonLd data={webSiteSchema()} />
       <section className="home-hero">
         <Image
           className="hero-image"
@@ -72,7 +74,7 @@ export default function Home() {
               <h2>Every layer. Every line. One standard.</h2>
             </div>
             <p>
-              New pavement, protective sealer, precise striping, and targeted repairs—planned as
+              New pavement, protective sealer, precise striping, and targeted repairs, planned as
               one complete surface system.
             </p>
           </div>
@@ -105,10 +107,11 @@ export default function Home() {
         <div className="container why-grid">
           <div className="why-image">
             <Image
-              src="/assets/asphalt-pattern.jpg"
-              alt="Detailed close-up of asphalt aggregate"
+              src="/assets/gallery-trail-striping.jpg"
+              alt="Freshly paved wooded trail with a bright yellow centerline, a real Ford Paving project"
               fill
               sizes="(max-width: 850px) 100vw, 50vw"
+              style={{ objectPosition: "center 60%" }}
             />
             <div className="why-badge">
               <span>FORD</span>
@@ -134,7 +137,7 @@ export default function Home() {
                 <span>02</span>
                 <div>
                   <h3>Build the right plan</h3>
-                  <p>You get a clear path forward—not a one-size-fits-all recommendation.</p>
+                  <p>You get a clear path forward, not a one-size-fits-all recommendation.</p>
                 </div>
               </li>
               <li>

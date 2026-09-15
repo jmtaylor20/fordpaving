@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { GA_TAG_ID } from "./gtag";
 import { CallConversionTracker } from "./call-conversion-tracker";
+import { JsonLd, localBusinessSchema } from "./structured-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.URL ?? "https://fordpaving.com"),
@@ -51,7 +52,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
-        {/* Google tag (gtag.js) — Google Ads conversion tracking */}
+        <JsonLd data={localBusinessSchema()} />
+        {/* Google tag (gtag.js) for Google Ads conversion tracking */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TAG_ID}`}
           strategy="afterInteractive"
