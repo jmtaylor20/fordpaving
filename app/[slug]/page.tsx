@@ -24,7 +24,7 @@ export function generateStaticParams() {
 }
 
 const titles: Record<string, string> = {
-  about: "About Ford Paving & Sealing",
+  about: "About Us",
   contact: "Request a Free Estimate",
   gallery: "Paving & Pavement Photo Gallery",
   "privacy-policy": "Privacy Policy",
@@ -48,10 +48,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = services.find((item) => item.slug === slug);
 
   return {
-    title: service ? `${service.title} | Ford Paving & Sealing` : titles[slug],
+    title: service ? service.title : titles[slug],
     description: service
       ? `${service.summary} Serving ${serviceArea}.`
       : descriptions[slug],
+    alternates: { canonical: `/${slug}/` },
   };
 }
 

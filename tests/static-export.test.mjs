@@ -57,6 +57,29 @@ test("build writes every page into the directory netlify.toml publishes", async 
   }
 });
 
+test("export includes a sitemap and robots file that agree with the page list", async () => {
+  const sitemap = await readFile(new URL("sitemap.xml", outDir), "utf8");
+  const robots = await readFile(new URL("robots.txt", outDir), "utf8");
+  for (const page of pages) {
+    const route = page === "index.html" ? "/" : `/${page.replace("index.html", "")}`;
+    assert.ok(sitemap.includes(`<loc>https://fordpaving.com${route}</loc>`), `sitemap is missing ${route}`);
+  }
+  assert.doesNotMatch(sitemap, /thank-you/);
+  assert.match(robots, /Sitemap: https:\/\/fordpaving\.com\/sitemap\.xml/);
+  assert.match(robots, /Disallow: \/thank-you\//);
+});
+
+test("every page has one canonical URL and a single-brand title", async () => {
+  for (const page of pages) {
+    const html = await readPage(page);
+    const route = page === "index.html" ? "/" : `/${page.replace("index.html", "")}`;
+    const canonical = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map((match) => match[1]);
+    assert.deepEqual(canonical, [`https://fordpaving.com${route}`], `${page} canonical`);
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+    assert.equal((title.match(/Ford Paving/g) ?? []).length, 1, `${page} title repeats the brand: ${title}`);
+  }
+});
+
 test("every page carries LocalBusiness schema plus a WebSite or BreadcrumbList record", async () => {
   for (const page of pages) {
     const types = typesOf(jsonLd(await readPage(page)));
@@ -83,7 +106,7 @@ test("service pages carry a Service record that points back at the business", as
 test("service cards use real job photos, not the stock service set", async () => {
   const home = await readPage("index.html");
   const stock = [...new Set(home.match(/\/assets\/service-[a-z-]+\.jpg/g) ?? [])];
-  assert.deepEqual(stock, ["/assets/service-asphalt.jpg"], "only the hero may use a stock image");
+  assert.deepEqual(stock, [], "no stock service images should remain on the home page");
   const assets = await readdir(new URL("public/assets/", repoRoot));
   for (const name of realPhotos) {
     assert.ok(home.includes(`/assets/${name}.jpg`), `${name}.jpg should appear on the home page`);
