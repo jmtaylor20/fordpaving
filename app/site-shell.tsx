@@ -114,6 +114,17 @@ export function SiteFooter() {
           <p>Asphalt done right. From first grade to final stripe.</p>
         </div>
       </div>
+      <div className="container" style={{ position: "relative", paddingBottom: 24 }}>
+        <p style={{ margin: 0, fontSize: "0.72rem", color: "rgba(255, 255, 255, 0.4)" }}>
+          Designed and managed by{" "}
+          <a
+            href="https://taylormadegrowth.com"
+            style={{ color: "inherit", textDecoration: "underline" }}
+          >
+            TaylorMade Brands, LLC
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }
